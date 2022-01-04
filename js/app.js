@@ -14,6 +14,7 @@ const displayBooks = (books) => {
   let imgUrl = "";
   for (const book in books.docs) {
     const div = document.createElement("div");
+    div.classList.add("col");
     console.log(books.docs[book].cover_edition_key);
     if (books.docs[book].cover_edition_key) {
       imgUrl = `https://covers.openlibrary.org/b/olid/${books.docs[book].cover_edition_key}-M.jpg`;
