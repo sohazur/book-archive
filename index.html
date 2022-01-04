@@ -15,29 +15,28 @@
   </head>
   <body>
     <!-- Header Starts -->
-    <header>
-      <div>
-        <h1 class="text-center text-primary">Book Archive</h1>
-        <div class="input-group mb-3">
-          <input
-            id="search-field"
-            type="text"
-            class="form-control"
-            placeholder="Search for books..."
-            aria-label="Search for books..."
-            aria-describedby="search-button"
-          />
-          <button
-            class="btn btn-outline-secondary"
-            type="button"
-            id="search-button"
-            onclick="searchBooks()"
-          >
-            Search
-          </button>
-        </div>
+    <header id="header">
+      <h1 class="text-center text-primary">Book Archive</h1>
+      <div class="input-group mb-3">
+        <input
+          id="search-field"
+          type="text"
+          class="form-control"
+          placeholder="Search for books..."
+          aria-label="Search for books..."
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          onclick="searchBooks()"
+        >
+          Search
+        </button>
       </div>
     </header>
+
+    <!-- Search result section -->
+    <section id="books-display"></section>
 
     <!-- JavaScript -->
     <script src="js/app.js"></script>
