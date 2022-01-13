@@ -5,21 +5,17 @@ const searchBooks = () => {
   document.getElementById("search-field").value = "";
   document.getElementById("search-count").innerText = "";
   document.getElementById("books-display").innerText = "";
-  //   document.getElementById("section").innerText = "";
   const url = `https://openlibrary.org/search.json?q=${searchText}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => displayBooks(data));
-};``
+};
+``;
 
 // function for displaying search results
 const displayBooks = (books) => {
   displaySearchCount(books.numFound);
-  if (books.numFound === 0) {
-    document.getElementById("section").innerHTML = `
-            <h2 class="text-center">Oops, No result found!</h2>
-        `;
-  } else {
+  if (books.numFound !== 0) {
     const sectionContainer = document.getElementById("books-display");
     let imgUrl = "";
     for (const book in books.docs) {
@@ -38,29 +34,28 @@ const displayBooks = (books) => {
   </a>
   <div class="card-body">
     <h5 class="card-title">${books.docs[book].title}</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Author: ${
-      books.docs[book].author_name[0] === undefined
-        ? "No Author"
-        : books.docs[book].author_name[0]
-    }</li>
+    <li class="list-group-item">Author: ${books.docs[book].author_name[0]}</li>
     <li class="list-group-item">First Publication Year: ${
       books.docs[book].first_publish_year
         ? books.docs[book].first_publish_year
         : "No Data Available"
     }</li>
-    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">Publisher: ${
+      books.docs[book].publisher
+        ? books.docs[book].publisher
+        : "No Data Available"
+    }</li>
   </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
 </div>
   `;
       sectionContainer.appendChild(div);
     }
+  } else {
+    document.getElementById("books-display").innerHTML = `
+        <h2 class="text-center">Oops, No result found!</h2>
+    `;
   }
   console.log(books.docs);
 };
